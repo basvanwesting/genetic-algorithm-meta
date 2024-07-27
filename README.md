@@ -16,7 +16,7 @@ heterogene setup. It was tried with Trait objects, Any and Enums, but all didn't
 So, after some consideration I settled on using an nested index based Genotype
 `MultiDiscreteGenotype<usize>` indices of external vectors of arbitrary types, which should
 then be retrieved in the fitness function. Only one type is allowed per external vector, so the
-Crossover/Mutate/Compete strategies all have a Dispatch implementation forwarding to the
+Crossover/Mutate/Compete strategies all have a Wrapper implementation forwarding to the
 underlying types (e.g. `CompeteTournament::new(4).into()`)
 
 Currently implemented as a permutation, but with caching an evolve strategy could also be used for larger search spaces.
@@ -109,11 +109,14 @@ println!("{}", permutate);
 //   best_max_stale_generations: Some(10)
 //   best_max_chromosome_age: Some(10)
 //   best_target_fitness_score: Some(0)
-//   best_mutate: Some(MutateDispatch(Random, 0.4))
-//   best_crossover: Some(CrossoverDispatch(Clone, true))
-//   best_compete: Some(CompeteDispatch(Elite, 0))
-//   best_extension: Some(ExtensionDispatch(Noop))
+//   best_mutate: Some(Once(Once { mutation_probability: 0.4 }))
+//   best_crossover: Some(Clone(Clone { keep_parent: true }))
+//   best_compete: Some(Elite(Elite))
+//   best_extension: Some(Noop(Noop))
 ```
 
 ## Tests
 Run tests with `cargo test`
+
+## Issues
+

@@ -5,28 +5,28 @@ pub use self::builder::{
 };
 
 use genetic_algorithm::chromosome::Chromosome;
-use genetic_algorithm::compete::CompeteDispatch;
-use genetic_algorithm::crossover::CrossoverDispatch;
-use genetic_algorithm::extension::ExtensionDispatch;
+use genetic_algorithm::compete::CompeteWrapper;
+use genetic_algorithm::crossover::CrossoverWrapper;
+use genetic_algorithm::extension::ExtensionWrapper;
 use genetic_algorithm::fitness::{Fitness, FitnessValue};
 use genetic_algorithm::genotype::{Genotype, MultiDiscreteGenotype};
-use genetic_algorithm::mutate::MutateDispatch;
+use genetic_algorithm::mutate::MutateWrapper;
 use genetic_algorithm::strategy::evolve::EvolveBuilder;
 
 #[derive(Clone, Debug)]
 pub struct Config<G: Genotype, F: Fitness<Genotype = G>> {
     pub evolve_builder:
-        EvolveBuilder<G, MutateDispatch, F, CrossoverDispatch, CompeteDispatch, ExtensionDispatch>,
+        EvolveBuilder<G, MutateWrapper, F, CrossoverWrapper, CompeteWrapper, ExtensionWrapper>,
     pub evolve_fitness_to_micro_second_factor: FitnessValue,
     pub rounds: usize,
     pub target_population_sizes: Vec<usize>,
     pub max_stale_generations_options: Vec<Option<usize>>,
     pub max_chromosome_age_options: Vec<Option<usize>>,
     pub target_fitness_score_options: Vec<Option<FitnessValue>>,
-    pub mutates: Vec<MutateDispatch>,
-    pub crossovers: Vec<CrossoverDispatch>,
-    pub competes: Vec<CompeteDispatch>,
-    pub extensions: Vec<ExtensionDispatch>,
+    pub mutates: Vec<MutateWrapper>,
+    pub crossovers: Vec<CrossoverWrapper>,
+    pub competes: Vec<CompeteWrapper>,
+    pub extensions: Vec<ExtensionWrapper>,
 }
 
 impl<G: Genotype, F: Fitness<Genotype = G>> Config<G, F> {
@@ -38,7 +38,7 @@ impl<G: Genotype, F: Fitness<Genotype = G>> Config<G, F> {
     pub fn evolve_builder_for_chromosome(
         &self,
         chromosome: &Chromosome<MultiDiscreteGenotype>,
-    ) -> EvolveBuilder<G, MutateDispatch, F, CrossoverDispatch, CompeteDispatch, ExtensionDispatch>
+    ) -> EvolveBuilder<G, MutateWrapper, F, CrossoverWrapper, CompeteWrapper, ExtensionWrapper>
     {
         let genes = &chromosome.genes;
 

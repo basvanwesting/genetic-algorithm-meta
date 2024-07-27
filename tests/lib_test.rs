@@ -1,5 +1,3 @@
-// mod support;
-
 #[cfg(test)]
 mod lib_tests {
     use genetic_algorithm::fitness::placeholders::CountTrue;
@@ -12,9 +10,9 @@ mod lib_tests {
         let target_population_sizes = vec![1, 2, 3, 4, 5];
         let max_stale_generations_options = vec![Some(10)];
         let mutates = vec![
+            MutateOnce::new(0.1).into(),
             MutateOnce::new(0.2).into(),
-            MutateDynamicOnce::new(0.2, 0.25).into(),
-            MutateDynamicRounds::new(0.1, 0.25).into(),
+            MutateOnce::new(0.3).into(),
         ];
         let crossovers = vec![
             CrossoverSingleGene::new(true).into(),

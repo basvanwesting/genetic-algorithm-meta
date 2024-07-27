@@ -1,10 +1,10 @@
 use crate::config::Config;
-use genetic_algorithm::compete::CompeteDispatch;
-use genetic_algorithm::crossover::CrossoverDispatch;
-use genetic_algorithm::extension::ExtensionDispatch;
+use genetic_algorithm::compete::CompeteWrapper;
+use genetic_algorithm::crossover::CrossoverWrapper;
+use genetic_algorithm::extension::ExtensionWrapper;
 use genetic_algorithm::fitness::{Fitness, FitnessValue};
 use genetic_algorithm::genotype::Genotype;
-use genetic_algorithm::mutate::MutateDispatch;
+use genetic_algorithm::mutate::MutateWrapper;
 use genetic_algorithm::strategy::evolve::EvolveBuilder;
 
 #[derive(Debug, Clone, Eq, PartialEq)]
@@ -13,7 +13,7 @@ pub struct TryFromBuilderError(pub &'static str);
 #[derive(Clone, Debug)]
 pub struct Builder<G: Genotype, F: Fitness<Genotype = G>> {
     pub evolve_builder: Option<
-        EvolveBuilder<G, MutateDispatch, F, CrossoverDispatch, CompeteDispatch, ExtensionDispatch>,
+        EvolveBuilder<G, MutateWrapper, F, CrossoverWrapper, CompeteWrapper, ExtensionWrapper>,
     >,
     pub evolve_fitness_to_micro_second_factor: FitnessValue,
     pub rounds: usize,
@@ -21,10 +21,10 @@ pub struct Builder<G: Genotype, F: Fitness<Genotype = G>> {
     pub max_stale_generations_options: Vec<Option<usize>>,
     pub max_chromosome_age_options: Vec<Option<usize>>,
     pub target_fitness_score_options: Vec<Option<FitnessValue>>,
-    pub mutates: Vec<MutateDispatch>,
-    pub crossovers: Vec<CrossoverDispatch>,
-    pub competes: Vec<CompeteDispatch>,
-    pub extensions: Vec<ExtensionDispatch>,
+    pub mutates: Vec<MutateWrapper>,
+    pub crossovers: Vec<CrossoverWrapper>,
+    pub competes: Vec<CompeteWrapper>,
+    pub extensions: Vec<ExtensionWrapper>,
 }
 
 impl<G: Genotype, F: Fitness<Genotype = G>> Builder<G, F> {
@@ -40,11 +40,11 @@ impl<G: Genotype, F: Fitness<Genotype = G>> Builder<G, F> {
         mut self,
         evolve_builder: EvolveBuilder<
             G,
-            MutateDispatch,
+            MutateWrapper,
             F,
-            CrossoverDispatch,
-            CompeteDispatch,
-            ExtensionDispatch,
+            CrossoverWrapper,
+            CompeteWrapper,
+            ExtensionWrapper,
         >,
     ) -> Self {
         self.evolve_builder = Some(evolve_builder);
@@ -86,19 +86,19 @@ impl<G: Genotype, F: Fitness<Genotype = G>> Builder<G, F> {
         self.target_fitness_score_options = target_fitness_score_options;
         self
     }
-    pub fn with_mutates(mut self, mutates: Vec<MutateDispatch>) -> Self {
+    pub fn with_mutates(mut self, mutates: Vec<MutateWrapper>) -> Self {
         self.mutates = mutates;
         self
     }
-    pub fn with_crossovers(mut self, crossovers: Vec<CrossoverDispatch>) -> Self {
+    pub fn with_crossovers(mut self, crossovers: Vec<CrossoverWrapper>) -> Self {
         self.crossovers = crossovers;
         self
     }
-    pub fn with_competes(mut self, competes: Vec<CompeteDispatch>) -> Self {
+    pub fn with_competes(mut self, competes: Vec<CompeteWrapper>) -> Self {
         self.competes = competes;
         self
     }
-    pub fn with_extensions(mut self, extensions: Vec<ExtensionDispatch>) -> Self {
+    pub fn with_extensions(mut self, extensions: Vec<ExtensionWrapper>) -> Self {
         self.extensions = extensions;
         self
     }
