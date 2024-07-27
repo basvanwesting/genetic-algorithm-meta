@@ -1,6 +1,7 @@
 # genetic-algorithm-meta
 
 This library was extracted from the crate [genetic_algorithm](https://docs.rs/genetic_algorithm/latest/genetic_algorithm) and therefore depends on it.
+Version numbers are kept in-sync to indicate compatibility.
 
 One cool thing to do with genotypes is to make a meta-genotype of all the
 Crossover/Mutate/Compete strategies and other Evolve parameters. This could be used to optimize

@@ -1,3 +1,6 @@
+//! This library was extracted from the crate [genetic_algorithm](https://docs.rs/genetic_algorithm/latest/genetic_algorithm) and therefore depends on it.
+//! Version numbers are kept in-sync to indicate compatibility.
+//!
 //! One cool thing to do with genotypes is to make a meta-genotype of all the
 //! Crossover/Mutate/Compete strategies and other Evolve parameters. This could be used to optimize
 //! the parameters of some other genetic algorithm. Yes, a simple nested for loop would also work,
@@ -16,8 +19,10 @@
 //!
 //! See example meta_evolve_binary for an meta analysis of the evolution strategy:
 //!
-//! * See [example/meta_evolve_binary](https://github.com/basvanwesting/genetic-algorithm-meta/blob/main/examples/meta_evolve_binary.rs) `cargo run --example meta_evolve_binary --release`
-//! * See [example/meta_evolve_nqueens](https://github.com/basvanwesting/genetic-algorithm-meta/blob/main/examples/meta_evolve_nqueens.rs) `cargo run --example meta_evolve_nqueens --release`
+//! * [example/meta_evolve_binary](https://github.com/basvanwesting/genetic-algorithm-meta/blob/main/examples/meta_evolve_binary.rs) `cargo run --example meta_evolve_binary --release`
+//! * [example/meta_evolve_milp](https://github.com/basvanwesting/genetic-algorithm-meta/blob/main/examples/meta_evolve_milp.rs) `cargo run --example meta_evolve_milp --release`
+//! * [example/meta_evolve_monkeys](https://github.com/basvanwesting/genetic-algorithm-meta/blob/main/examples/meta_evolve_monkeys.rs) `cargo run --example meta_evolve_monkeys --release`
+//! * [example/meta_evolve_nqueens](https://github.com/basvanwesting/genetic-algorithm-meta/blob/main/examples/meta_evolve_nqueens.rs) `cargo run --example meta_evolve_nqueens --release`
 //!
 //! Currently implemented as a permutation, but with caching an evolve strategy could also be used for larger search spaces.
 //!
