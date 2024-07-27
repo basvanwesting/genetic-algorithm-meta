@@ -23,7 +23,7 @@ Currently implemented as a permutation, but with caching an evolve strategy coul
 
 ## Documentation
 
-See [docs.rs](https://docs.rs/genetic_algorithm/latest/genetic_algorithm)
+See [docs.rs](https://docs.rs/genetic_algorithm_meta/latest/genetic_algorithm_meta)
 
 ## Examples
 Run with `cargo run --example [EXAMPLE_BASENAME] --release`
